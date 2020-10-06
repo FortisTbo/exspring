@@ -2,29 +2,31 @@ package be.abis.exercise.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import be.abis.exercise.model.Course;
-import be.abis.exercise.repository.MemoryCourseRepository;
+import be.abis.exercise.repository.CourseRepository;
 
 @Service
 public class AbisCourseService implements CourseService {
 	
-	MemoryCourseRepository memCouRep = new MemoryCourseRepository();
+	@Autowired
+	CourseRepository courseRep;
 	
 	@Override
 	public List<Course> findAllCourses() {
-		return memCouRep.findAllCourses();
+		return courseRep.findAllCourses();
 	}
 
 	@Override
 	public Course findCourse(int id) {
-		return memCouRep.findCourse(id);
+		return courseRep.findCourse(id);
 	}
 
 	@Override
 	public Course findCourse(String shortTitle) {
-		return memCouRep.findCourse(shortTitle);
+		return courseRep.findCourse(shortTitle);
 	}
 
 
