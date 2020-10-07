@@ -1,0 +1,19 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Welcome</title>
+</head>
+<body>
+	<h1>Search for courses</h1>
+
+	<h3>What do you want to do next ?</h3>
+	<ul>
+		<li><a href="ShowAllCourses">Show all courses</a></li>
+		<li><a href="FindCourseById">Find a course by id</a></li>
+		<li><a href="FindCourseByShortTitle">Find a course by short title</a></li>
+	</ul>
+	<form action="#" method="post" th:action="@{/WelcomForm}">
+		<button type="submit">Back</button>
+	</form>
+</body>
+</html>
