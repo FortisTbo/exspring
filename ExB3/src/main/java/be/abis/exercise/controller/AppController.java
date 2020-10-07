@@ -66,7 +66,6 @@ public class AppController {
 	public String submitChangePassword(Model model, Person p) throws IOException {
 		trainingService.changePassword(personSave, p.getPassword());
 		
-		model.addAttribute("name", personSave.getFirstName());
 		return "changePasswordConfirmation";
 	}
 	
@@ -88,8 +87,7 @@ public class AppController {
 	
 	@PostMapping("/addPerson")
 	public String submitAddPerson(Model model, Person p) throws IOException {
-		List<Person> allPersons = trainingService.allPersons();
-		p.setPersonId(allPersons.size()+1);
+		p.setPersonId(trainingService.findMaxId()+1);
 		trainingService.addPerson(p);
 		
 		return "personAdministration";
@@ -108,5 +106,27 @@ public class AppController {
 		return "removePerson";
 	}
 	
+	
+	
+	@GetMapping("/searchPersonById")
+	public String showSearchPersonByIdPage(Model model) {
+		Person p = new Person ();
+		
+		model.addAttribute("person", p);
+		return "searchPersonById";
+	}
+		
+	@PostMapping("/searchPersonById")
+	public String submitSearchPersonById(Model model, Person p) throws IOException {
+	
+		Person pFind = trainingService.findPerson(p.getPersonId());
+		if  (pFind == null) {
+			model.addAttribute("person", new Person ());
+		} else {
+			model.addAttribute("person", pFind);
+		}
+		return "searchPersonById";
+		
+	}
 	
 }

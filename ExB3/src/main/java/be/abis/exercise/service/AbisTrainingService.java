@@ -83,4 +83,20 @@ public class AbisTrainingService implements TrainingService {
 		
 		return allPersons;
 	}
+	
+	@Override
+	public int findMaxId() {
+		int maxId = 0;
+		
+		ArrayList<Person> allPersons = personRepo.getAllPersons();
+		
+		for (Person p : allPersons) {
+			int id = p.getPersonId();
+			if  (id > maxId) {
+				maxId = id;
+			}
+		}
+		return maxId;
+
+	}
 }

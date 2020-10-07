@@ -26,4 +26,6 @@ public interface TrainingService {
 	public Person findByEmailPerson(String emailAddress);
 	
 	public List<Person> allPersons();
+	
+	public int findMaxId();
 }

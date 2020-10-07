@@ -5,10 +5,11 @@
 </head>
 <body>
 
-	<h1>Search for persons</h1>
+	<h1>Search for all persons</h1>
 
 		<table border="1">
 			<tr>
+				<th>Person ID</th>
 				<th>First Name</th>
 				<th>Last Name</th>
 				<th>Age</th>
@@ -19,6 +20,7 @@
 				<th>Address</th>
 			</tr>
 			<tr th:each="person : ${persons}">
+				<td th:text="${person.personId}"></td>
 				<td th:text="${person.firstName}"></td>
 				<td th:text="${person.lastName}"></td>
 				<td th:text="${person.age}"></td>
