@@ -1,0 +1,90 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Welcome</title>
+</head>
+<body>
+
+	<h1>Add Person</h1>
+
+	<form action="#" method="post" th:action="@{/addPerson}" th:object="${person}">
+		<table>
+			<tr>
+				<td><b>Person</b></td>
+				<td>First Name :</td>
+				<td><input th:field="*{firstName}" type="text"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Last Name :</td>
+				<td><input th:field="*{lastName}" type="text"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Age :</td>
+				<td><input th:field="*{age}" type="text"></td>
+			</tr>			
+			<tr>
+				<td></td>
+				<td>eMail Address :</td>
+				<td><input th:field="*{emailAddress}" type="text"></td>
+			</tr>			
+			<tr>
+				<td></td>
+				<td>Password :</td>
+				<td><input th:field="*{password}" type="password"></td>
+			</tr>			
+			<tr>
+				<td></td>
+				<td>Language :</td>
+				<td>
+					<select th:field="*{language}">
+					    <option th:value="'fr'" th:text="French"></option>
+					    <option th:value="'nl'" th:text="Dutch"></option>
+					    <option th:value="'en'" th:text="English"></option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td><b>Company</b></td>	
+				<td>Name :</td>
+				<td><input th:field="*{company.name}" type="text"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Tel :</td>
+				<td><input th:field="*{company.telephoneNumber}" type="text"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>vatNr :</td>
+				<td><input th:field="*{company.vatNr}" type="text"></td>
+			</tr>
+			<tr>
+				<td><b>Adress</b></td>
+				<td>Street :</td>
+				<td><input th:field="*{company.address.street}" type="text"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Nr :</td>
+				<td><input th:field="*{company.address.nr}" type="text"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Town :</td>
+				<td><input th:field="*{company.address.town}" type="text"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Zip Code :</td>
+				<td><input th:field="*{company.address.zipcode}" type="text"></td>
+			</tr>
+						
+			<tr>
+				<td  align="right" colspan=3><button type="submit">Add</button></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
