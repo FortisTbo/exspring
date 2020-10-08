@@ -1,0 +1,22 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Welcome</title>
+</head>
+<body>
+	<h1>
+		Welcome <span th:text="${name}">
+	</h1>
+
+	<h3>What do you want to do next ?</h3>
+
+	<ul>
+		<li><a href="searchForCourses">Search for courses</a></li>
+		<li><a href="personAdministration">Person administration</a></li>
+	</ul>
+
+	<form action="#" method="get" th:action="@{/}">
+		<button type="submit">Logout</button>
+	</form>
+</body>
+</html>

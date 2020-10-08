@@ -1,0 +1,24 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Welcome</title>
+</head>
+<body>
+
+	<h1>Remove a persons</h1>
+
+		<table>
+			
+			<tr th:each="person : ${persons}">
+			<td>
+				<span th:text="${person.firstName}"/> <span th:text="${person.lastName}"/>
+			</td>
+
+			<td><a href="#" role="button" th:href="@{/removePerson(id=${person.personId})}">Remove</a></td>
+			</tr>
+		</table>
+	<form action="#" method="get" th:action="@{/personAdministration}">
+		<button type="submit">Back</button>
+	</form>
+</body>
+</html>
