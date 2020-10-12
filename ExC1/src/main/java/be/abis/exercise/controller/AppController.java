@@ -111,7 +111,8 @@ public class AppController {
 		try {
 			trainingService.addPerson(p);
 		} catch (IOException e) {
-			return "error";
+			bindingResult.reject("incorrectKey", "eMail address already exist");
+			return "addPerson";
 		}
 		
 		model.addAttribute("person", p);
@@ -126,8 +127,12 @@ public class AppController {
 	
 	@GetMapping("/removePerson")
 	public String showRemovePerson(@RequestParam(required=false) String id, Model model) {
-		System.out.println("ID : " + id);
+
 		if  (id != null) {
+			if  (personSave.getPersonId() == Integer.parseInt(id)) {
+				
+				return "removePersonError";
+			}
 			trainingService.deletePerson(Integer.parseInt(id));
 		}
 		
@@ -137,7 +142,11 @@ public class AppController {
 		return "removePerson";
 	}
 	
-	
+	@GetMapping("/removePersonError")
+	public String showRemovePersonErrorPage(Model model) {
+
+		return "removePersonError";
+	}
 	
 	@GetMapping("/searchPersonById")
 	public String showSearchPersonByIdPage(Model model) {
@@ -148,11 +157,12 @@ public class AppController {
 	}
 		
 	@PostMapping("/searchPersonById")
-	public String submitSearchPersonById(Model model, Person p) {
+	public String submitSearchPersonById(Model model, Person p, BindingResult bindingResult) {
 	
 		Person pFind = trainingService.findPerson(p.getPersonId());
 		if  (pFind == null) {
-			model.addAttribute("person", new Person ());
+			bindingResult.reject("incorrectId", "Id not found");
+			return "searchPersonById";
 		} else {
 			model.addAttribute("person", pFind);
 		}
@@ -177,7 +187,7 @@ public class AppController {
 	}
 		
 	@PostMapping("/searchCourseById")
-	public String submitSearchCourseById(Model model, Course c) {
+	public String submitSearchCourseById(Model model, Course c, BindingResult bindingResult) {
 	
 		Course cFind = null;
 		try {
@@ -185,8 +195,9 @@ public class AppController {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		if  (cFind == null) {
-			model.addAttribute("course", new Course ());
+		if  (cFind == null)  {
+			bindingResult.reject("incorrectId", "Incorrect Id");
+			return "searchCourseById";
 		} else {
 			model.addAttribute("course", cFind);
 		}
@@ -203,11 +214,12 @@ public class AppController {
 	}
 		
 	@PostMapping("/searchCourseByShortTitle")
-	public String submitSearchCourseByShortTitle(Model model, Course c) {
+	public String submitSearchCourseByShortTitle(Model model, Course c, BindingResult bindingResult) {
 	
 		Course cFind = courseService.findCourse(c.getShortTitle());
-		if  (cFind == null) {
-			model.addAttribute("course", new Course ());
+		if  (cFind == null)  {
+			bindingResult.reject("incorrectTitle", "Incorrect Title");
+			return "searchCourseByShortTitle";
 		} else {
 			model.addAttribute("course", cFind);
 		}

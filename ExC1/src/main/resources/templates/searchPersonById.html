@@ -8,6 +8,7 @@
 	<h1>Search person by ID</h1>
 
 	<form action="#" method="post" th:action="@{/searchPersonById}" th:object="${person}">
+		<span style="color:red" th:errors="*{global}"></span>
 		<table>
 			<tr>
 				<td>

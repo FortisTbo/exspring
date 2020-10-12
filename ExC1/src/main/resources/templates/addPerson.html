@@ -8,6 +8,7 @@
 	<h1>Add Person</h1>
 
 	<form action="#" method="post" th:action="@{/addPerson}" th:object="${person}">
+		<span style="color:red" th:errors="*{global}"></span>
 		<table>
 			<tr>
 				<td><b>Person</b></td>
