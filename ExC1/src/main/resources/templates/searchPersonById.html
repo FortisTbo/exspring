@@ -1,0 +1,54 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Welcome</title>
+</head>
+<body>
+
+	<h1>Search person by ID</h1>
+
+	<form action="#" method="post" th:action="@{/searchPersonById}" th:object="${person}">
+		<table>
+			<tr>
+				<td>
+					<input th:field="*{personId}" type="text">
+					<button type="submit">Go</button>
+				</td>
+			</tr>
+		</table>
+		
+
+	<table>
+			<tr>
+				<td><b>Person</b></td>
+				<td>First Name :</td>
+				<td><span th:text="${person.firstName}"/></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Last Name :</td>
+				<td><span th:text="${person.lastName}"/></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Age :</td>
+				<td><span th:text="${person.age}" /></td>
+			</tr>			
+			<tr>
+				<td></td>
+				<td>eMail Address :</td>
+				<td><span th:text="${person.emailAddress}" /></td>
+			</tr>			
+			<tr>
+				<td></td>
+				<td>Language :</td>
+				<td><span th:text="${person.language}" /></td>
+			</tr>
+		</table>
+		
+	</form>
+	<form action="#" method="get" th:action="@{/personAdministration}">
+		<button type="submit">Back</button>
+	</form>
+</body>
+</html>
